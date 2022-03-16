@@ -11,16 +11,22 @@
 
   <!-- top section -->
   <div class="align-left">
-    <div class="overflow-y-auto h-64 w-64...">
+    <div class="overflow-y-auto h-64 w-64... chatBorder font">
       <div v-for="(chat, index) in chatStore.chats" v-bind:key="index">
         {{ chat.user }} : {{ chat.text }}
       </div>
     </div>
     <!-- bottom section -->
-    <div>
-      <input v-model="txtChatInput" placeholder="Enter chat" id="myInput" />
-      <br />
+    <div class="send">
+      <input
+        v-model="txtChatInput"
+        placeholder="Enter chat"
+        id="myInput"
+        class="text-holder"
+      />
       <button
+        class="button-54"
+        role="button"
         @click="sendChat"
         onclick="document.getElementById('myInput').value = ''"
       >
@@ -50,7 +56,65 @@ function sendChat() {
 </script>
 
 <style scoped>
+.font {
+  font-family: "Open Sans", sans-serif;
+}
+
 .align-left {
   text-align: left;
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-bottom: 25px;
+}
+.chatBorder {
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+}
+.send {
+  font-family: "Open Sans", sans-serif;
+  padding-top: 5px;
+}
+
+.text-holder {
+  font-family: "Open Sans", sans-serif;
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+  padding: 4px;
+  width: 565px;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  margin-right: 25px;
+}
+
+.button-54 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+@media (min-width: 768px) {
+  .button-54 {
+    padding: 0.25em 0.75em;
+  }
 }
 </style>

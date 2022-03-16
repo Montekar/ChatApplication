@@ -6,35 +6,49 @@ const userStore = UserStore();
 
 <template>
   <div class="main">
-    <nav class="font-size">
-      |
-      <RouterLink to="/">Home</RouterLink> |
-      <RouterLink to="/createUser">Create User</RouterLink> |
-      <RouterLink to="/room">Join room</RouterLink> |
-      <RouterLink to="/chat">Chats</RouterLink>
-      |
-    </nav>
-    <br />
-    <div>
-      <span v-if="userStore.username"
-        >Logged in as {{ userStore.username }}</span
-      >
+    <div class="border">
+      <nav class="font-size">
+        |
+        <RouterLink to="/">Home</RouterLink> |
+        <RouterLink to="/createUser">Create User</RouterLink> |
+        <RouterLink to="/room">Join room</RouterLink> |
+        <RouterLink to="/chat">Chats</RouterLink>
+        |
+      </nav>
+      <br />
+      <div>
+        <span v-if="userStore.username" class="name"
+          >Logged in as {{ userStore.username }}</span
+        >
+
+        <br />
+        <br />
+        <RouterView />
+      </div>
     </div>
-    <br />
-    <br />
-    <RouterView />
   </div>
 </template>
 
 <style scoped>
 .main {
-  padding: 100px 390px;
+  padding: 50px 390px;
   text-align: center;
 }
+.border {
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;
+  padding: 10px;
+  box-shadow: 15px 20px;
+}
 .font-size {
-  font-size: 2.5rem;
+  font-family: "Open Sans", sans-serif;
+  font-size: 2.4rem;
 }
 a:hover {
   color: cornflowerblue;
+}
+.name {
+  font-size: 30px;
 }
 </style>
