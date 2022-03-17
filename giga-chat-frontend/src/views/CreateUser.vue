@@ -1,8 +1,17 @@
 <template>
   <div class="padding">
-    <p>Create user</p>
+    <p class="title">Create user menu</p>
+    <br />
+    <p class="text-padding">
+      ⚫ Here you can create username which will be displayed in the chat
+      room<br />
+      <br />
+      ⚫ To join the chat room just click on any room name displayed in the list
+      or create new one<br />
+      <br />
+      ⚫ You are free to change your username whenever you want<br />
+    </p>
     <div class="createUserBox">
-      <!--<h2>Let's create user!</h2> -->
       <input
         v-model="inputName"
         placeholder="Enter username"
@@ -34,16 +43,21 @@ function handleCreateUser() {
 </script>
 
 <style scoped>
-.createUserBox {
-  font-family: "Open Sans", sans-serif;
-  padding-top: 13.75rem;
+.text-padding {
   text-align: left;
+  padding-top: 10px;
 }
 
-p {
+.title {
+  text-align: center;
   font-family: "Open Sans", sans-serif;
   font-size: 1.5rem;
   font-weight: bolder;
+}
+
+.createUserBox {
+  font-family: "Open Sans", sans-serif;
+  padding-top: 5.15rem;
   text-align: left;
 }
 .padding {
