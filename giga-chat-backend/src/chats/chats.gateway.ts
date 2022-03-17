@@ -20,8 +20,21 @@ import { Connection } from 'typeorm';
 export class ChatsGateway {
   @WebSocketServer()
   server: Server;
+  doOnce = false;
+  constructor(private readonly chatsService: ChatsService) {
+    this.chatsService.typingUsers$.subscribe((data) => {
+      if (this.doOnce) this.server.emit('getIsTyping', data);
+      else this.doOnce = true;
+    });
+  }
 
-  constructor(private readonly chatsService: ChatsService) {}
+  @SubscribeMessage('isTyping')
+  async onTypingStart(
+    @MessageBody() message: any,
+    @ConnectedSocket() socket: Socket,
+  ) {
+    this.chatsService.handleUserTyping(message.user);
+  }
 
   @SubscribeMessage('createRoom')
   async create(@MessageBody() message: any, @ConnectedSocket() socket: Socket) {

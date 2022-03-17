@@ -16,9 +16,15 @@
         {{ chat.user }} : {{ chat.text }}
       </div>
     </div>
+    <ul>
+      <li v-for="(chat, index) in chatStore.isTyping" v-bind:key="index">
+        {{ chat }} is typing
+      </li>
+    </ul>
     <!-- bottom section -->
     <div class="send">
       <input
+        v-on:input="typing"
         v-model="txtChatInput"
         placeholder="Enter chat"
         id="myInput"
@@ -47,8 +53,15 @@ const chatService = new ChatService();
 
 const txtChatInput = ref("");
 chatStore.getAllRoomMessages();
+chatStore.updateTyping();
 function sendChat() {
   chatStore.sendMessage({
+    user: userStore.username,
+    text: txtChatInput.value,
+  });
+}
+function typing() {
+  chatStore.isTypingText({
     user: userStore.username,
     text: txtChatInput.value,
   });

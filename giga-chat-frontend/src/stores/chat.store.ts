@@ -14,6 +14,9 @@ export const ChatStore = defineStore({
     ] as Chat[],
     currentRoom: "",
     listOfAllRooms: [] as Room[],
+    isTyping: [] as string[],
+
+    initialisedListeners: [] as string[],
   }),
   actions: {
     createRoom(room: string) {
@@ -26,19 +29,40 @@ export const ChatStore = defineStore({
       chatService.createRoom(newRoom);
     },
     getAllRooms() {
-      chatService.getRooms((data: Room[]) => {
-        this.listOfAllRooms = [];
-        data.forEach((room) => {
-          this.listOfAllRooms.push(room);
+      if (this.initialisedListeners.indexOf("getAllRooms") == -1) {
+        chatService.getRooms((data: Room[]) => {
+          this.listOfAllRooms = [];
+          data.forEach((room) => {
+            this.listOfAllRooms.push(room);
+          });
         });
-      });
+        this.initialisedListeners.push("getAllRooms");
+      }
     },
-    getAllRoomMessages(data: Chat) {
+    isTypingText(chat: Chat) {
+      chat.room = this.currentRoom;
+      chatService.startTyping(chat);
+    },
+    updateTyping() {
+      if (this.initialisedListeners.indexOf("getTyping") == -1) {
+        chatService.updateIsTyping((data: string[]) => {
+          this.isTyping = [];
+          data.forEach((user) => {
+            this.isTyping.push(user);
+          });
+        });
+        this.initialisedListeners.push("getTyping");
+      }
+    },
+    getAllRoomMessages() {
       console.log("getAllRoomMessages");
-      chatService.getMessages((data: Chat) => {
-        console.log(data);
-        this.chats.push(data);
-      });
+      if (this.initialisedListeners.indexOf("getAllMessages") == -1) {
+        chatService.getMessages((data: Chat) => {
+          console.log(data);
+          this.chats.push(data);
+        });
+        this.initialisedListeners.push("getAllMessages");
+      }
     },
     sendRoomRequest() {
       chatService.sendRoomsRequest();

@@ -45,4 +45,15 @@ export class ChatService {
       chatContinue(args);
     });
   }
+
+  startTyping(chat: Chat) {
+    this.socket.emit("isTyping", chat);
+  }
+
+  updateIsTyping(chatContinue: (chat: any) => void) {
+    return this.socket.on("getIsTyping", (args) => {
+      console.log(args);
+      chatContinue(args);
+    });
+  }
 }
