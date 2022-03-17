@@ -1,14 +1,20 @@
 <template>
   <div class="align-left">
-    <div class="overflow-y-auto h-64 w-64...">
-      <p>List of rooms:</p>
-      <div v-for="(room, index) in chatStore.listOfAllRooms" v-bind:key="index">
-        <router-link
-          v-bind:to="'/chat/' + room.nameOfRoom"
-          @click="joinRoom(room.nameOfRoom)"
+    <div class="listBorder">
+      <div class="overflow-y-auto h-64 w-64...">
+        <p>List of rooms:</p>
+        <br />
+        <div
+          v-for="(room, index) in chatStore.listOfAllRooms"
+          v-bind:key="index"
         >
-          {{ room.nameOfRoom }}</router-link
-        >
+          <router-link
+            v-bind:to="'/chat/' + room.nameOfRoom"
+            @click="joinRoom(room.nameOfRoom)"
+          >
+            {{ room.nameOfRoom }}</router-link
+          >
+        </div>
       </div>
     </div>
 
@@ -46,6 +52,12 @@ function createRoom() {
 </script>
 
 <style scoped>
+.listBorder {
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+}
+
 .align-left {
   text-align: left;
   padding-right: 25px;
@@ -63,10 +75,11 @@ p {
   border-width: 3px;
   border-color: black;
   padding: 4px;
-  width: 510px;
+  width: 535px;
   box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
     5px 5px 0px 0px;
   margin-right: 25px;
+  margin-top: 10px;
 }
 
 .button {
@@ -82,6 +95,5 @@ p {
   padding: 7px;
   box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
     5px 5px 0px 0px;
-  margin-right: 25px;
 }
 </style>
