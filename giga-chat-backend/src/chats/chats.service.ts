@@ -45,14 +45,6 @@ export class ChatsService {
   remove(id: number) {
     return `This action removes a #${id} chat`;
   }
-
-  private typingUsers: BehaviorSubject<{ username: string; timeoutId: any }[]> =
-    new BehaviorSubject([]);
-
-  public get typingUsers$(): Observable<string[]> {
-    return this.typingUsers.pipe(map((users) => users.map((u) => u.username)));
-  }
-
   handleUserTyping(username: string) {
     const existingUser = this.typingUsers.value.find(
       (u) => u.username === username,
@@ -73,5 +65,12 @@ export class ChatsService {
       clearTimeout(existingUser.timeoutId);
       existingUser.timeoutId = timeoutId;
     }
+  }
+
+  private typingUsers: BehaviorSubject<{ username: string; timeoutId: any }[]> =
+    new BehaviorSubject([]);
+
+  public get typingUsers$(): Observable<string[]> {
+    return this.typingUsers.pipe(map((users) => users.map((u) => u.username)));
   }
 }
