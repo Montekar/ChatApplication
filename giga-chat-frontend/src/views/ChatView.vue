@@ -15,12 +15,12 @@
       <div v-for="(chat, index) in chatStore.chats" v-bind:key="index">
         {{ chat.user }} : {{ chat.text }}
       </div>
+      <ul class="bottom">
+        <li v-for="(chat, index) in chatStore.isTyping" v-bind:key="index">
+          {{ chat }} is typing
+        </li>
+      </ul>
     </div>
-    <ul>
-      <li v-for="(chat, index) in chatStore.isTyping" v-bind:key="index">
-        {{ chat }} is typing
-      </li>
-    </ul>
     <!-- bottom section -->
     <div class="send">
       <input
@@ -69,6 +69,10 @@ function typing() {
 </script>
 
 <style scoped>
+.bottom {
+  position: absolute;
+}
+
 .font {
   font-family: "Open Sans", sans-serif;
 }
