@@ -17,7 +17,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  height: 14.55rem;
+  height: 15.6rem;
   padding-bottom: 25px;
 }
 p {
