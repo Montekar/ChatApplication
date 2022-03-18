@@ -1,15 +1,4 @@
 <template>
-  <!--
-  <h2>Send chat</h2>
-
-  <input v-model="txtRoomInput" placeholder="Enter room" /> <br />
-
-  <h2>All chats:</h2>
-  <input v-model="txtRoomListener" placeholder="Enter room name" /> <br />
-  <button @click="listenToRoom">Connect</button>
-  -->
-
-  <!-- top section -->
   <div class="align-left">
     <div class="overflow-y-auto h-64 w-64... chatBorder font">
       <div v-for="(chat, index) in chatStore.chats" v-bind:key="index">
@@ -46,10 +35,8 @@
 import { ChatStore } from "@/stores/chat.store";
 import { UserStore } from "@/stores/user.store";
 import { ref } from "vue";
-import { ChatService } from "@/services/chat.service";
 const userStore = UserStore();
 const chatStore = ChatStore();
-const chatService = new ChatService();
 
 const txtChatInput = ref("");
 chatStore.getAllRoomMessages();
@@ -100,8 +87,7 @@ function typing() {
   border-color: black;
   padding: 4px;
   width: 565px;
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
-    5px 5px 0px 0px;
+  box-shadow: 1px 1px 0 0, 2px 2px 0 0, 3px 3px 0 0, 4px 4px 0 0, 5px 5px 0 0;
   margin-right: 25px;
 }
 
@@ -115,8 +101,7 @@ function typing() {
   cursor: pointer;
   border: 3px solid;
   padding: 0.25em 0.5em;
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
-    5px 5px 0px 0px;
+  box-shadow: 1px 1px 0 0, 2px 2px 0 0, 3px 3px 0 0, 4px 4px 0 0, 5px 5px 0 0;
   position: relative;
   user-select: none;
   -webkit-user-select: none;
@@ -124,7 +109,7 @@ function typing() {
 }
 
 .button-54:active {
-  box-shadow: 0px 0px 0px 0px;
+  box-shadow: 0 0 0 0;
   top: 5px;
   left: 5px;
 }
