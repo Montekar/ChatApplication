@@ -6,7 +6,7 @@
       </div>
       <ul class="bottom">
         <li v-for="(chat, index) in chatStore.isTyping" v-bind:key="index">
-          {{ chat }} is typing
+          {{ chat }} is typing...
         </li>
       </ul>
     </div>
