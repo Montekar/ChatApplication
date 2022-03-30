@@ -1,5 +1,5 @@
 export class Match {
-  private readonly userUUID: string;
-  private readonly likes: string[];
-  private readonly dislikes: string[];
+  readonly userUUID: string;
+  readonly likes: string[];
+  readonly dislikes: string[];
 }
